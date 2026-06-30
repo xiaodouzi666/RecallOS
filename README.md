@@ -92,6 +92,13 @@ python3 -m http.server 8765 --bind 127.0.0.1
 
 Then visit `http://127.0.0.1:8765/`.
 
+After GitHub Pages is enabled from `main` / `docs`, the hosted Control Tower
+will be available at:
+
+```text
+https://xiaodouzi666.github.io/RecallOS/control-tower/
+```
+
 For a single backend validation command that exercises seed data, coded agents,
 mock API workflows, the robot simulation, evidence manifest generation, risk
 scoring, and the end-to-end case runner, use:
@@ -122,6 +129,7 @@ python3 api-workflows/audit-register/workflow.py
 
 ```text
 docs/                 Product, architecture, DBOM, demo, judging, deployment docs
+docs/control-tower/   GitHub Pages copy of the static demo UI
 seed-data/            Deterministic applications, decisions, components, truth tables
 coded-agents/         Four runnable coded-agent CLIs
 agent-builder/        Low-code Agent Builder prompt and output contracts
