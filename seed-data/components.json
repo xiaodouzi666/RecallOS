@@ -1,0 +1,69 @@
+{
+  "policies": [
+    {
+      "id": "credit-policy-v7.1",
+      "type": "policy",
+      "hash": "sha256-demo-policy-v7-1",
+      "status": "faulty",
+      "clause": "If monthly revenue < EUR 5,000, reject automatically.",
+      "usedByAgents": [
+        "loan-eligibility-agent-v2.3"
+      ],
+      "relatedPrompt": "prompt-2026-05-19",
+      "relatedRetrievalIndex": "credit-policy-index-2026-05"
+    },
+    {
+      "id": "credit-policy-v7.2",
+      "type": "policy",
+      "hash": "sha256-demo-policy-v7-2",
+      "status": "corrected",
+      "clause": "Low revenue applicants with approved guarantees go to manual review.",
+      "usedByAgents": [
+        "loan-eligibility-agent-v2.4"
+      ],
+      "relatedPrompt": "prompt-2026-06-27",
+      "relatedRetrievalIndex": "credit-policy-index-2026-06"
+    }
+  ],
+  "prompts": [
+    {
+      "id": "prompt-2026-05-19",
+      "hash": "sha256-demo-prompt-v1",
+      "status": "used_with_faulty_policy"
+    },
+    {
+      "id": "prompt-2026-06-27",
+      "hash": "sha256-demo-prompt-v2",
+      "status": "corrected_context"
+    }
+  ],
+  "models": [
+    {
+      "id": "demo-llm",
+      "provider": "demo",
+      "riskTier": "controlled_demo"
+    }
+  ],
+  "agents": [
+    {
+      "id": "loan-eligibility-agent-v2.3",
+      "name": "SME Loan Eligibility Agent",
+      "status": "used_faulty_policy"
+    },
+    {
+      "id": "loan-eligibility-agent-v2.4",
+      "name": "SME Loan Eligibility Agent",
+      "status": "corrected"
+    }
+  ],
+  "retrieval_indexes": [
+    {
+      "id": "credit-policy-index-2026-05",
+      "status": "contains_faulty_clause"
+    },
+    {
+      "id": "credit-policy-index-2026-06",
+      "status": "corrected"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "recallId": "RECALL-2026-001",
+  "totalScanned": 120,
+  "affectedCount": 64,
+  "affectedDecisionIds": [
+    "DEC-2026-00380",
+    "DEC-2026-00381",
+    "DEC-2026-00382",
+    "DEC-2026-00383",
+    "DEC-2026-00384",
+    "DEC-2026-00385",
+    "DEC-2026-00386",
+    "DEC-2026-00387",
+    "DEC-2026-00388",
+    "DEC-2026-00389",
+    "DEC-2026-00390",
+    "DEC-2026-00391",
+    "DEC-2026-00392",
+    "DEC-2026-00393",
+    "DEC-2026-00394",
+    "DEC-2026-00395",
+    "DEC-2026-00396",
+    "DEC-2026-00397",
+    "DEC-2026-00398",
+    "DEC-2026-00399",
+    "DEC-2026-00400",
+    "DEC-2026-00401",
+    "DEC-2026-00402",
+    "DEC-2026-00403",
+    "DEC-2026-00404",
+    "DEC-2026-00405",
+    "DEC-2026-00406",
+    "DEC-2026-00407",
+    "DEC-2026-00408",
+    "DEC-2026-00409",
+    "DEC-2026-00410",
+    "DEC-2026-00411",
+    "DEC-2026-00412",
+    "DEC-2026-00413",
+    "DEC-2026-00414",
+    "DEC-2026-00415",
+    "DEC-2026-00416",
+    "DEC-2026-00417",
+    "DEC-2026-00418",
+    "DEC-2026-00419",
+    "DEC-2026-00420",
+    "DEC-2026-00421",
+    "DEC-2026-00422",
+    "DEC-2026-00423",
+    "DEC-2026-00424",
+    "DEC-2026-00425",
+    "DEC-2026-00426",
+    "DEC-2026-00427",
+    "DEC-2026-00428",
+    "DEC-2026-00429",
+    "DEC-2026-00430",
+    "DEC-2026-00431",
+    "DEC-2026-00432",
+    "DEC-2026-00433",
+    "DEC-2026-00434",
+    "DEC-2026-00435",
+    "DEC-2026-00436",
+    "DEC-2026-00437",
+    "DEC-2026-00438",
+    "DEC-2026-00439",
+    "DEC-2026-00440",
+    "DEC-2026-00441",
+    "DEC-2026-00442",
+    "DEC-2026-00443"
+  ],
+  "componentUsagePattern": {
+    "policyVersions": [
+      "credit-policy-v7.1"
+    ],
+    "agentVersions": [
+      "loan-eligibility-agent-v2.3"
+    ],
+    "promptVersions": [
+      "prompt-2026-05-19"
+    ],
+    "modelVersions": [
+      "demo-llm"
+    ],
+    "retrievalIndexes": [
+      "credit-policy-index-2026-05"
+    ]
+  },
+  "riskPreview": {
+    "autoRejected": 23,
+    "customerFacingActionsAlreadyTaken": 7,
+    "emailAlreadySent": 5
+  },
+  "confidence": 0.98,
+  "missingEvidenceWarnings": []
+}

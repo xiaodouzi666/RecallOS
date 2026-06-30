@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RecallOS Control Tower</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="shell-header">
+      <div>
+        <p class="eyebrow">RecallOS</p>
+        <h1>AI Decision Recall Control Tower</h1>
+      </div>
+      <div class="status-strip" id="status-strip"></div>
+    </header>
+
+    <main>
+      <section class="metric-grid" id="metric-grid" aria-label="Recall metrics"></section>
+
+      <section class="overview-band">
+        <div class="chart-wrap">
+          <div class="section-head">
+            <h2>Recall Funnel</h2>
+            <p>Faulty component to verified remediation</p>
+          </div>
+          <div id="funnel-chart" class="funnel-chart"></div>
+        </div>
+        <div class="timeline-wrap">
+          <div class="section-head">
+            <h2>Maestro Case Timeline</h2>
+            <p>Includes rework and closure gates</p>
+          </div>
+          <ol id="timeline" class="timeline"></ol>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <nav class="tabs" id="tabs" aria-label="Recall views"></nav>
+        <section id="view" class="view" aria-live="polite"></section>
+      </section>
+    </main>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

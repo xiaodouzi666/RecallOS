@@ -1,0 +1,9 @@
+[project]
+name = "recallos"
+version = "0.1.0"
+description = "RecallOS: Product Recall for AI Decisions, built for UiPath AgentHack."
+requires-python = ">=3.9"
+license = { text = "MIT" }
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

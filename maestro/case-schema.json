@@ -1,0 +1,76 @@
+{
+  "entityName": "AIDecisionRecallCase",
+  "inputFields": {
+    "recallId": "string",
+    "triggerSource": "string",
+    "faultyComponentType": "string",
+    "faultyComponentId": "string",
+    "correctedComponentId": "string",
+    "businessDomain": "string",
+    "incidentSummary": "string",
+    "detectedAt": "datetime",
+    "initiatedBy": "string"
+  },
+  "computedFields": {
+    "intakeClassification": {
+      "type": "object",
+      "writtenBy": "Recall Intake Agent"
+    },
+    "componentFingerprint": {
+      "type": "object",
+      "writtenBy": "Component Fingerprint Task"
+    },
+    "blastRadiusSummary": {
+      "type": "object",
+      "writtenBy": "Blast Radius Coded Agent"
+    },
+    "affectedDecisionIds": {
+      "type": "array",
+      "writtenBy": "Blast Radius Coded Agent"
+    },
+    "dbomBundleUri": {
+      "type": "string",
+      "writtenBy": "DBOM Generator Coded Agent"
+    },
+    "freezeExecutionStatus": {
+      "type": "object",
+      "writtenBy": "Freeze Downstream Actions Workflow"
+    },
+    "replayBatchSummary": {
+      "type": "object",
+      "writtenBy": "Counterfactual Replay Coded Agent"
+    },
+    "impactClassification": {
+      "type": "object",
+      "writtenBy": "Impact Classification Agent"
+    },
+    "humanReviewOutcome": {
+      "type": "object",
+      "writtenBy": "Recall Owner Review Task"
+    },
+    "remediationPlan": {
+      "type": "object",
+      "writtenBy": "Remediation Planner Coded Agent"
+    },
+    "remediationExecutionStatus": {
+      "type": "object",
+      "writtenBy": "Remediation Execution Workflow"
+    },
+    "regressionTestStatus": {
+      "type": "string",
+      "writtenBy": "Test Cloud Recall Verification"
+    },
+    "recallCertificateUri": {
+      "type": "string",
+      "writtenBy": "Audit Certificate Generator"
+    },
+    "finalApprovalStatus": {
+      "type": "string",
+      "writtenBy": "Compliance Final Approval Task"
+    },
+    "reentryCount": {
+      "type": "number",
+      "writtenBy": "Case Rework Controller"
+    }
+  }
+}
