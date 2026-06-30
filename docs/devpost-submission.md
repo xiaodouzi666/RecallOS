@@ -5,6 +5,7 @@
 - Track: UiPath Maestro Case
 - Public GitHub repository: <https://github.com/xiaodouzi666/RecallOS>
 - Hosted Control Tower: <https://xiaodouzi666.github.io/RecallOS/control-tower/>
+- UiPath Labs Environment: <https://staging.uipath.com/hackathon26_244/>
 - Presentation deck: <https://github.com/xiaodouzi666/RecallOS/raw/main/deck/RecallOS_Submission_Deck.pptx>
 - License: MIT
 - Video: <https://youtu.be/f9GTKpnuK_I>

@@ -51,6 +51,7 @@
 
 - GitHub repository is published at `https://github.com/xiaodouzi666/RecallOS`.
 - GitHub Pages is published from `main` / `/docs` at `https://xiaodouzi666.github.io/RecallOS/control-tower/`.
+- UiPath Labs environment link added to Devpost project page: `https://staging.uipath.com/hackathon26_244/`.
 - UiPath Automation Cloud package, deployment, and successful job evidence are captured in `docs/uipath-cloud-evidence.md`.
 - Demo video is uploaded to YouTube at `https://youtu.be/f9GTKpnuK_I`.
 - Devpost submission is published at `https://devpost.com/software/recallos-product-recall-for-ai-decisions`.
