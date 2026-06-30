@@ -29,6 +29,8 @@ outcomes, routes human approvals, performs remediation through UiPath robots and
 API workflows, validates the fix through Test Cloud, and closes the case with an
 audit certificate.
 
+![RecallOS Control Tower](https://raw.githubusercontent.com/xiaodouzi666/RecallOS/main/docs/screenshots/control-tower-overview.png)
+
 ## How We Built It
 
 We built the prototype around UiPath Maestro Case as the control plane. Coded
@@ -38,6 +40,8 @@ customer communication drafting, and audit summaries. API Workflows mock
 LoanCore, CRM, Ticket, EmailDraft, and AuditRegister integrations. A robot
 simulation updates a legacy portal compliance register. Test Cloud-style tests
 gate closure.
+
+![UiPath Orchestrator successful job](https://raw.githubusercontent.com/xiaodouzi666/RecallOS/main/docs/screenshots/uipath-successful-job.png)
 
 ## UiPath Components
 
