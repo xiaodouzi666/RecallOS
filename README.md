@@ -189,5 +189,7 @@ this submission.
 - Customer communication is draft-only; no real email is sent.
 - This is audit-ready workflow evidence, not legal advice or a complete
   compliance product.
-- Automation Cloud setup, Devpost submission, public GitHub publishing, and
-  video upload require account access and must be completed by the project owner.
+- Public GitHub publishing and UiPath Automation Cloud evidence have been
+  completed for the submission package.
+- Video upload, Devpost video-link entry, and the final Devpost submit action
+  still require project-owner account action.

@@ -24,32 +24,33 @@
 
 ## UiPath Cloud
 
-- [ ] Automation Cloud tenant ready.
-- [ ] Orchestrator folder `RecallOS-Demo` created.
-- [ ] Assets, queues, and storage buckets created.
-- [ ] Data Service entities created and loaded.
-- [ ] Maestro case configured.
-- [ ] Coded agents deployed.
-- [ ] Agent Builder agents configured.
-- [ ] API Workflows published.
-- [ ] Robot automation available.
-- [ ] Test Cloud verification visible.
+- [x] Automation Cloud tenant ready.
+- [x] Solution package `Solution 1` version `1.0.0` published.
+- [x] Package status is `Ready`.
+- [x] Orchestrator runtime folder `Shared / Solution 1` created by deployment.
+- [x] Process `Maestro BPMN` deployed.
+- [x] Manual Orchestrator job completed successfully.
+- [x] Successful-job screenshot captured in `docs/screenshots/uipath-successful-job.png`.
+- [x] Local coded agents, mock API workflows, robot simulation, and Test Cloud-style gates are runnable and documented.
+- [ ] Optional full productization: recreate every local contract as native Data Service entities, Agent Builder agents, API Workflows, queues, Action Center tasks, and Test Cloud assets.
 
 ## Devpost
 
 - [ ] Track selected: UiPath Maestro Case.
-- [ ] Public GitHub repository linked.
+- [x] Public GitHub repository published.
+- [ ] Public GitHub repository linked on Devpost.
 - [ ] MIT license visible.
 - [ ] README complete.
 - [ ] Demo video is under 5 minutes.
 - [ ] Presentation deck uploaded or linked.
-- [ ] Automation Cloud solution can be demonstrated.
+- [x] Automation Cloud solution can be demonstrated.
 - [ ] Product feedback form completed if pursuing bonus.
 
 ## Manual Steps Requiring Owner Access
 
-- Publish the GitHub repository.
-- Log into UiPath Automation Cloud and deploy the solution.
+- GitHub repository is published at `https://github.com/xiaodouzi666/RecallOS`.
+- GitHub Pages source is prepared as `main` / `/docs`; saving the setting publishes the Control Tower.
+- UiPath Automation Cloud package, deployment, and successful job evidence are captured in `docs/uipath-cloud-evidence.md`.
 - Record and upload the demo video.
-- Submit the Devpost project page.
-- Complete any optional UiPath product feedback form.
+- Fill the Devpost video link after upload and perform the final Devpost submit action.
+- Complete any optional UiPath product feedback form if pursuing the bonus award.

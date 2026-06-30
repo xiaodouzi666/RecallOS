@@ -1,5 +1,24 @@
 # Devpost Submission Draft
 
+## Submission Links
+
+- Track: UiPath Maestro Case
+- Public GitHub repository: <https://github.com/xiaodouzi666/RecallOS>
+- Hosted Control Tower: <https://xiaodouzi666.github.io/RecallOS/control-tower/>
+- Presentation deck: <https://github.com/xiaodouzi666/RecallOS/raw/main/deck/RecallOS_Submission_Deck.pptx>
+- License: MIT
+- Video: TODO after upload
+- UiPath evidence: package `Solution 1` version `1.0.0`, deployment
+  `Shared / Solution 1`, successful job
+  `7f3a8d31-355a-4c61-8eae-766ae7957be7`
+
+## Built With
+
+UiPath Maestro Case, UiPath Maestro BPMN, UiPath Agent Builder, UiPath Coded
+Agents, UiPath API Workflows, UiPath RPA Robot, UiPath Test Cloud, UiPath
+Orchestrator, UiPath Data Service / Data Fabric, UiPath for Coding Agents,
+Python, JavaScript, HTML, CSS, Codex.
+
 ## Title
 
 RecallOS: Product Recall for AI Decisions
@@ -71,7 +90,17 @@ policy replay makes the decision, while agents explain, classify, and draft.
 
 ## What Is Next
 
-- Deploy the full case into Automation Cloud.
+- Productize every local contract as native Automation Cloud assets.
 - Replace mock systems with real connectors.
 - Add richer DBOM graph exploration.
 - Expand recall patterns beyond lending to HR, insurance, procurement, and grant decisions.
+
+## Required Video Checklist
+
+- Keep under 5 minutes.
+- Show the solution running, not only slides.
+- Show UiPath Automation Cloud package/deployment/job evidence.
+- Walk through the Control Tower and end-to-end recall flow.
+- Explain which agents are involved and how Maestro orchestrates them.
+- Show where humans fit in: review, approval, rework, and closure.
+- Show or mention Codex / UiPath for Coding Agents usage for bonus points.

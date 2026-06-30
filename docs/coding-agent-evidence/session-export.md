@@ -30,5 +30,7 @@ repository without exposing private account state.
 
 - Deterministic policy code decides financial outcomes.
 - Customer communications remain draft-only.
-- The owner must still deploy to UiPath Automation Cloud, publish GitHub,
-  record the demo video, and submit Devpost manually.
+- GitHub publication, UiPath Automation Cloud package/deployment, and
+  successful Orchestrator job evidence have been captured for submission.
+- The remaining owner-visible steps are recording/uploading the demo video,
+  adding its link to Devpost, and performing the final Devpost submit action.

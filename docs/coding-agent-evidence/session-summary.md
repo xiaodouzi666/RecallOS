@@ -54,9 +54,9 @@ Implemented the latest review hardening:
 - Human review can re-enter Blast Radius or Remediation Plan before approval.
 - API workflow outputs use a consistent contract shape.
 
-Manual external work remains:
+External submission state:
 
-- Deploying the solution in UiPath Automation Cloud.
-- Recording the live UiPath Cloud demo video.
-- Publishing the public GitHub repository.
-- Submitting the Devpost project page.
+- Public GitHub repository published.
+- UiPath Automation Cloud solution package deployed and run successfully.
+- Demo video still needs to be recorded/uploaded.
+- Devpost still needs the video link and final submit action.

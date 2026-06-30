@@ -1,9 +1,15 @@
 # UiPath Automation Cloud Deployment Guide
 
 This repository contains the local reference implementation. The steps below
-map it into UiPath Automation Cloud. Account login, tenant creation, Devpost
-submission, public GitHub publishing, and video upload must be performed by the
-project owner.
+map it into a fully productized UiPath Automation Cloud implementation.
+
+For the live hackathon submission evidence already captured, see
+`docs/uipath-cloud-evidence.md`: package `Solution 1` version `1.0.0`,
+deployment to `Shared / Solution 1`, process `Maestro BPMN`, and successful
+Orchestrator job `7f3a8d31-355a-4c61-8eae-766ae7957be7`.
+
+Video upload, Devpost video-link entry, and final Devpost submission remain
+owner-account actions.
 
 ## 1. Orchestrator Setup
 
