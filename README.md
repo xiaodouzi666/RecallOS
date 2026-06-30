@@ -177,7 +177,9 @@ The Devpost submission should include:
 - Description of UiPath components, low-code agents, coded agents, and coding-agent usage
 
 See `docs/uipath-deployment-guide.md` and `docs/submission-checklist.md` for
-the manual cloud and Devpost steps.
+the manual cloud and Devpost steps. See `docs/uipath-cloud-evidence.md` for
+the live UiPath package, deployment, and successful job evidence captured for
+this submission.
 
 ## Safety and Limitations
 
