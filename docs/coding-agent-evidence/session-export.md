@@ -32,5 +32,6 @@ repository without exposing private account state.
 - Customer communications remain draft-only.
 - GitHub publication, UiPath Automation Cloud package/deployment, and
   successful Orchestrator job evidence have been captured for submission.
-- The remaining owner-visible steps are recording/uploading the demo video,
-  adding its link to Devpost, and performing the final Devpost submit action.
+- Subsequent submission steps were completed: the demo video was uploaded,
+  the video link was added to Devpost, and the final Devpost submit action was
+  performed.

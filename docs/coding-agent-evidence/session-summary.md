@@ -58,5 +58,5 @@ External submission state:
 
 - Public GitHub repository published.
 - UiPath Automation Cloud solution package deployed and run successfully.
-- Demo video still needs to be recorded/uploaded.
-- Devpost still needs the video link and final submit action.
+- Demo video uploaded and linked.
+- Devpost final submit action completed.

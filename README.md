@@ -192,5 +192,5 @@ this submission.
   compliance product.
 - Public GitHub publishing and UiPath Automation Cloud evidence have been
   completed for the submission package.
-- Video upload, Devpost video-link entry, and the final Devpost submit action
-  still require project-owner account action.
+- Video upload, Devpost video-link entry, and final Devpost submission have
+  been completed for the hackathon entry.

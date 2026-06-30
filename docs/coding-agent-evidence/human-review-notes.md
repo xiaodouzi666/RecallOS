@@ -21,5 +21,5 @@ SHA-256 is stored in the case evidence manifest after the final file write.
 ## UiPath Cloud Boundary
 
 Local files provide the reference implementation and deployment contracts.
-Actual Automation Cloud deployment, Devpost submission, and demo video upload
-require project-owner login and are tracked as manual steps.
+Automation Cloud deployment evidence, Devpost submission, and demo video upload
+were completed through the project-owner browser session.

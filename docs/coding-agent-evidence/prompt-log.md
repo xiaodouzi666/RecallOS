@@ -48,11 +48,11 @@ Integrated outputs:
 
 - Final local package refreshed from the current `recallos/` tree.
 - Presentation deck stored in `deck/RecallOS_Submission_Deck.pptx`.
-- External submission artifacts still require owner action:
-  - Demo video.
-  - Public GitHub repository.
-  - Devpost project page.
-  - Live UiPath Automation Cloud deployment.
+- External submission artifacts were subsequently completed:
+  - Demo video uploaded.
+  - Public GitHub repository published.
+  - Devpost project page submitted.
+  - Live UiPath Automation Cloud evidence captured.
 
 ## Prompt 5: Audit and closure hardening
 

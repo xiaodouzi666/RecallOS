@@ -7,7 +7,9 @@
 - Hosted Control Tower: <https://xiaodouzi666.github.io/RecallOS/control-tower/>
 - Presentation deck: <https://github.com/xiaodouzi666/RecallOS/raw/main/deck/RecallOS_Submission_Deck.pptx>
 - License: MIT
-- Video: TODO after upload; local rendered file is
+- Video: <https://youtu.be/f9GTKpnuK_I>
+- Devpost project: <https://devpost.com/software/recallos-product-recall-for-ai-decisions>
+- Local rendered video:
   `/Users/liujunjun/Documents/Codex/2026-06-28/https-uipath-agenthack-devpost-com-ref-2/outputs/RecallOS_Demo_With_Audio.mp4`
 - UiPath evidence: package `Solution 1` version `1.0.0`, deployment
   `Shared / Solution 1`, successful job
@@ -117,3 +119,11 @@ Local render verification:
 - Video: `1280x720`, H.264, 30 fps
 - Audio: AAC mono narration, present and decoded successfully
 - SHA-256: `6cccc11a20276a3e3335b1e7c4bb0519b0acfa614e3e5fdd9b03b02738ee3b11`
+
+## Submission Status
+
+- GitHub Pages live demo verified.
+- YouTube demo video uploaded and linked.
+- Devpost required fields completed.
+- Final Devpost submission completed.
+- Optional product feedback form remains only if pursuing that bonus award.

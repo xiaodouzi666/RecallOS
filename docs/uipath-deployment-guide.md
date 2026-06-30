@@ -8,8 +8,8 @@ For the live hackathon submission evidence already captured, see
 deployment to `Shared / Solution 1`, process `Maestro BPMN`, and successful
 Orchestrator job `7f3a8d31-355a-4c61-8eae-766ae7957be7`.
 
-Video upload, Devpost video-link entry, and final Devpost submission remain
-owner-account actions.
+Video upload, Devpost video-link entry, and final Devpost submission were
+completed for the hackathon submission.
 
 ## 1. Orchestrator Setup
 

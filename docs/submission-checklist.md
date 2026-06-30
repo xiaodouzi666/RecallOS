@@ -36,22 +36,22 @@
 
 ## Devpost
 
-- [ ] Track selected: UiPath Maestro Case.
+- [x] Track selected: UiPath Maestro Case.
 - [x] Public GitHub repository published.
-- [ ] Public GitHub repository linked on Devpost.
-- [ ] MIT license visible.
-- [ ] README complete.
+- [x] Public GitHub repository linked on Devpost.
+- [x] MIT license visible.
+- [x] README complete.
 - [x] Demo video rendered locally, under 5 minutes, with audio.
-- [ ] Demo video uploaded and linked on Devpost.
-- [ ] Presentation deck uploaded or linked.
+- [x] Demo video uploaded and linked on Devpost.
+- [x] Presentation deck uploaded or linked.
 - [x] Automation Cloud solution can be demonstrated.
 - [ ] Product feedback form completed if pursuing bonus.
 
 ## Manual Steps Requiring Owner Access
 
 - GitHub repository is published at `https://github.com/xiaodouzi666/RecallOS`.
-- GitHub Pages source is prepared as `main` / `/docs`; saving the setting publishes the Control Tower.
+- GitHub Pages is published from `main` / `/docs` at `https://xiaodouzi666.github.io/RecallOS/control-tower/`.
 - UiPath Automation Cloud package, deployment, and successful job evidence are captured in `docs/uipath-cloud-evidence.md`.
-- Demo video is rendered locally at `outputs/RecallOS_Demo_With_Audio.mp4`; upload it to YouTube, Vimeo, or Youku and copy the public link.
-- Fill the Devpost video link after upload and perform the final Devpost submit action.
+- Demo video is uploaded to YouTube at `https://youtu.be/f9GTKpnuK_I`.
+- Devpost submission is published at `https://devpost.com/software/recallos-product-recall-for-ai-decisions`.
 - Complete any optional UiPath product feedback form if pursuing the bonus award.
