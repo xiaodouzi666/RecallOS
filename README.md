@@ -135,6 +135,7 @@ coded-agents/         Four runnable coded-agent CLIs
 agent-builder/        Low-code Agent Builder prompt and output contracts
 api-workflows/        Mock API workflow entrypoints and contracts
 maestro/              Case schema, stage contracts, rework/SLA rules
+maestro/*.bpmn        Full BPMN 2.0 recall process with human and exception loops
 robots/               Legacy portal and compliance register robot simulation
 testcloud/            Test Cloud-style test plan and cases
 app/                  Static Recall Control Tower UI

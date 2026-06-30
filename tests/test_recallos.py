@@ -5,6 +5,7 @@ import unittest
 import json
 import subprocess
 import sys
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from recallos_core.agents import (
@@ -346,6 +347,65 @@ class RecallOSTestCase(unittest.TestCase):
             self.assertEqual(payload["correlationId"], RECALL_ID, workflow)
             self.assertIn("result", payload, workflow)
             self.assertEqual(payload["errors"], [], workflow)
+
+    def test_full_bpmn_model_has_required_orchestration_and_rework_loops(self) -> None:
+        bpmn_path = ROOT / "maestro" / "recallos-ai-decision-recall.bpmn"
+        tree = ET.parse(bpmn_path)
+        root = tree.getroot()
+        ns = {"bpmn": "http://www.omg.org/spec/BPMN/20100524/MODEL"}
+
+        nodes = {
+            element.attrib["id"]: element.attrib.get("name", "")
+            for element in root.findall(".//*[@id]", ns)
+        }
+        required_nodes = {
+            "Task_Intake": "Intake: classify recall trigger",
+            "Task_BlastRadius": "Blast Radius: find affected decisions",
+            "Task_DBOM": "DBOM: generate decision evidence bundle",
+            "Task_Freeze": "Freeze downstream actions",
+            "Task_Replay": "Replay under corrected policy",
+            "UserTask_HumanReview": "Action Center: recall owner human review",
+            "Task_RemediationExecution": "Execute remediation across systems",
+            "Task_TestCloudVerification": "Test Cloud verification gate",
+            "Task_Certificate": "Issue AI Decision Recall Certificate",
+            "UserTask_FinalApproval": "Action Center: compliance final approval",
+        }
+        for node_id, node_name in required_nodes.items():
+            self.assertEqual(nodes[node_id], node_name)
+
+        sequence_flows = {
+            flow.attrib["id"]: (flow.attrib["sourceRef"], flow.attrib["targetRef"])
+            for flow in root.findall(".//bpmn:sequenceFlow", ns)
+        }
+        defined_node_ids = set(nodes)
+        for flow_id, (source, target) in sequence_flows.items():
+            self.assertIn(source, defined_node_ids, flow_id)
+            self.assertIn(target, defined_node_ids, flow_id)
+
+        expected_edges = {
+            "Flow_ReviewNeedsEvidence_BlastRadius": (
+                "Gateway_HumanReviewDecision",
+                "Task_BlastRadius",
+            ),
+            "Flow_ReviewRevise_RemediationPlan": (
+                "Gateway_HumanReviewDecision",
+                "Task_RemediationPlan",
+            ),
+            "Flow_VerificationFailed_RemediationPlan": (
+                "Gateway_VerificationPassed",
+                "Task_RemediationPlan",
+            ),
+            "Flow_VerificationFailed_SeniorBoard": (
+                "Gateway_VerificationPassed",
+                "UserTask_SeniorRecallBoard",
+            ),
+            "Flow_Certificate_FinalApproval": (
+                "Task_Certificate",
+                "UserTask_FinalApproval",
+            ),
+        }
+        for flow_id, edge in expected_edges.items():
+            self.assertEqual(sequence_flows[flow_id], edge)
 
 
 if __name__ == "__main__":

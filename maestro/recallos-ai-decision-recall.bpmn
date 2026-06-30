@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:recallos="https://recallos.ai/bpmn"
+  targetNamespace="https://recallos.ai/maestro">
+  <process id="RecallOS_AIDecisionRecall" name="RecallOS AI Decision Recall" isExecutable="true">
+    <laneSet id="LaneSet_RecallOS">
+      <lane id="Lane_Maestro" name="UiPath Maestro">
+        <flowNodeRef>StartEvent_FaultDetected</flowNodeRef>
+        <flowNodeRef>Gateway_ImpactFound</flowNodeRef>
+        <flowNodeRef>Gateway_HumanReviewDecision</flowNodeRef>
+        <flowNodeRef>Gateway_VerificationPassed</flowNodeRef>
+        <flowNodeRef>EndEvent_Closed</flowNodeRef>
+      </lane>
+      <lane id="Lane_AgentBuilder" name="Agent Builder">
+        <flowNodeRef>Task_Intake</flowNodeRef>
+        <flowNodeRef>Task_ImpactClassification</flowNodeRef>
+        <flowNodeRef>Task_AuditSummary</flowNodeRef>
+      </lane>
+      <lane id="Lane_CodedAgents" name="Coded Agents">
+        <flowNodeRef>Task_ComponentFingerprint</flowNodeRef>
+        <flowNodeRef>Task_BlastRadius</flowNodeRef>
+        <flowNodeRef>Task_DBOM</flowNodeRef>
+        <flowNodeRef>Task_Replay</flowNodeRef>
+        <flowNodeRef>Task_RemediationPlan</flowNodeRef>
+      </lane>
+      <lane id="Lane_WorkflowsRobots" name="API Workflows and Robots">
+        <flowNodeRef>Task_Freeze</flowNodeRef>
+        <flowNodeRef>Task_RemediationExecution</flowNodeRef>
+      </lane>
+      <lane id="Lane_Humans" name="Action Center and Human Review">
+        <flowNodeRef>UserTask_HumanReview</flowNodeRef>
+        <flowNodeRef>UserTask_FinalApproval</flowNodeRef>
+        <flowNodeRef>UserTask_SeniorRecallBoard</flowNodeRef>
+      </lane>
+      <lane id="Lane_TestCloud" name="Test Cloud">
+        <flowNodeRef>Task_TestCloudVerification</flowNodeRef>
+      </lane>
+      <lane id="Lane_Evidence" name="Audit Evidence">
+        <flowNodeRef>Task_Certificate</flowNodeRef>
+        <flowNodeRef>EndEvent_NoImpact</flowNodeRef>
+      </lane>
+    </laneSet>
+
+    <startEvent id="StartEvent_FaultDetected" name="Faulty AI component detected">
+      <outgoing>Flow_Start_Intake</outgoing>
+    </startEvent>
+
+    <serviceTask id="Task_Intake" name="Intake: classify recall trigger"
+      recallos:actor="Agent Builder: Recall Intake Agent"
+      recallos:writes="intakeClassification">
+      <incoming>Flow_Start_Intake</incoming>
+      <outgoing>Flow_Intake_Fingerprint</outgoing>
+    </serviceTask>
+
+    <serviceTask id="Task_ComponentFingerprint" name="Fingerprint faulty component"
+      recallos:actor="Coded Agent"
+      recallos:writes="componentFingerprint">
+      <incoming>Flow_Intake_Fingerprint</incoming>
+      <outgoing>Flow_Fingerprint_BlastRadius</outgoing>
+    </serviceTask>
+
+    <serviceTask id="Task_BlastRadius" name="Blast Radius: find affected decisions"
+      recallos:actor="Blast Radius Coded Agent"
+      recallos:writes="blastRadiusSummary,affectedDecisionIds">
+      <incoming>Flow_Fingerprint_BlastRadius</incoming>
+      <incoming>Flow_ReviewNeedsEvidence_BlastRadius</incoming>
+      <outgoing>Flow_BlastRadius_ImpactFound</outgoing>
+    </serviceTask>
+
+    <exclusiveGateway id="Gateway_ImpactFound" name="Any affected decisions?">
+      <incoming>Flow_BlastRadius_ImpactFound</incoming>
+      <outgoing>Flow_NoImpact_Certificate</outgoing>
+      <outgoing>Flow_ImpactFound_DBOM</outgoing>
+    </exclusiveGateway>
+
+    <endEvent id="EndEvent_NoImpact" name="No-impact recall closed">
+      <incoming>Flow_NoImpact_Certificate</incoming>
+    </endEvent>
+
+    <serviceTask id="Task_DBOM" name="DBOM: generate decision evidence bundle"
+      recallos:actor="DBOM Generator Coded Agent"
+      recallos:writes="dbomBundleUri">
+      <incoming>Flow_ImpactFound_DBOM</incoming>
+      <outgoing>Flow_DBOM_Freeze</outgoing>
+    </serviceTask>
+
+    <serviceTask id="Task_Freeze" name="Freeze downstream actions"
+      recallos:actor="API Workflow"
+      recallos:writes="freezeExecutionStatus">
+      <incoming>Flow_DBOM_Freeze</incoming>
+      <outgoing>Flow_Freeze_Replay</outgoing>
+    </serviceTask>
+
+    <serviceTask id="Task_Replay" name="Replay under corrected policy"
+      recallos:actor="Counterfactual Replay Coded Agent"
+      recallos:writes="replayBatchSummary">
+      <incoming>Flow_Freeze_Replay</incoming>
+      <outgoing>Flow_Replay_ImpactClassification</outgoing>
+    </serviceTask>
+
+    <businessRuleTask id="Task_ImpactClassification" name="Classify customer and audit impact"
+      recallos:actor="Agent Builder: Impact Classification Agent"
+      recallos:writes="impactClassification">
+      <incoming>Flow_Replay_ImpactClassification</incoming>
+      <outgoing>Flow_ImpactClassification_RemediationPlan</outgoing>
+    </businessRuleTask>
+
+    <serviceTask id="Task_RemediationPlan" name="Plan remediation with idempotency"
+      recallos:actor="Remediation Planner Coded Agent"
+      recallos:writes="remediationPlan">
+      <incoming>Flow_ImpactClassification_RemediationPlan</incoming>
+      <incoming>Flow_ReviewRevise_RemediationPlan</incoming>
+      <incoming>Flow_VerificationFailed_RemediationPlan</incoming>
+      <outgoing>Flow_RemediationPlan_HumanReview</outgoing>
+    </serviceTask>
+
+    <userTask id="UserTask_HumanReview" name="Action Center: recall owner human review"
+      recallos:actor="Recall Owner"
+      recallos:writes="humanReviewOutcome">
+      <incoming>Flow_RemediationPlan_HumanReview</incoming>
+      <outgoing>Flow_HumanReview_Decision</outgoing>
+    </userTask>
+
+    <exclusiveGateway id="Gateway_HumanReviewDecision" name="Human review outcome">
+      <incoming>Flow_HumanReview_Decision</incoming>
+      <outgoing>Flow_ReviewNeedsEvidence_BlastRadius</outgoing>
+      <outgoing>Flow_ReviewRevise_RemediationPlan</outgoing>
+      <outgoing>Flow_ReviewApproved_RemediationExecution</outgoing>
+    </exclusiveGateway>
+
+    <serviceTask id="Task_RemediationExecution" name="Execute remediation across systems"
+      recallos:actor="API Workflows and RPA Robot"
+      recallos:writes="remediationExecutionStatus">
+      <incoming>Flow_ReviewApproved_RemediationExecution</incoming>
+      <outgoing>Flow_RemediationExecution_TestCloud</outgoing>
+    </serviceTask>
+
+    <serviceTask id="Task_TestCloudVerification" name="Test Cloud verification gate"
+      recallos:actor="UiPath Test Cloud"
+      recallos:writes="regressionTestStatus">
+      <incoming>Flow_RemediationExecution_TestCloud</incoming>
+      <outgoing>Flow_TestCloud_VerificationGateway</outgoing>
+    </serviceTask>
+
+    <exclusiveGateway id="Gateway_VerificationPassed" name="Verification passed?">
+      <incoming>Flow_TestCloud_VerificationGateway</incoming>
+      <outgoing>Flow_VerificationFailed_RemediationPlan</outgoing>
+      <outgoing>Flow_VerificationFailed_SeniorBoard</outgoing>
+      <outgoing>Flow_VerificationPassed_AuditSummary</outgoing>
+    </exclusiveGateway>
+
+    <userTask id="UserTask_SeniorRecallBoard" name="Action Center: senior recall board escalation"
+      recallos:actor="Senior Recall Board"
+      recallos:writes="seniorRecallBoardDecision">
+      <incoming>Flow_VerificationFailed_SeniorBoard</incoming>
+      <outgoing>Flow_SeniorBoard_RemediationPlan</outgoing>
+    </userTask>
+
+    <serviceTask id="Task_AuditSummary" name="Prepare audit summary"
+      recallos:actor="Agent Builder: Audit Summary Agent"
+      recallos:writes="auditSummary">
+      <incoming>Flow_VerificationPassed_AuditSummary</incoming>
+      <outgoing>Flow_AuditSummary_Certificate</outgoing>
+    </serviceTask>
+
+    <serviceTask id="Task_Certificate" name="Issue AI Decision Recall Certificate"
+      recallos:actor="Certificate Generator"
+      recallos:writes="recallCertificateUri,evidenceManifest">
+      <incoming>Flow_AuditSummary_Certificate</incoming>
+      <outgoing>Flow_Certificate_FinalApproval</outgoing>
+    </serviceTask>
+
+    <userTask id="UserTask_FinalApproval" name="Action Center: compliance final approval"
+      recallos:actor="Compliance Lead"
+      recallos:writes="finalApprovalStatus">
+      <incoming>Flow_Certificate_FinalApproval</incoming>
+      <outgoing>Flow_FinalApproval_Closed</outgoing>
+    </userTask>
+
+    <endEvent id="EndEvent_Closed" name="Recall case closed">
+      <incoming>Flow_FinalApproval_Closed</incoming>
+    </endEvent>
+
+    <sequenceFlow id="Flow_Start_Intake" sourceRef="StartEvent_FaultDetected" targetRef="Task_Intake" />
+    <sequenceFlow id="Flow_Intake_Fingerprint" sourceRef="Task_Intake" targetRef="Task_ComponentFingerprint" />
+    <sequenceFlow id="Flow_Fingerprint_BlastRadius" sourceRef="Task_ComponentFingerprint" targetRef="Task_BlastRadius" />
+    <sequenceFlow id="Flow_BlastRadius_ImpactFound" sourceRef="Task_BlastRadius" targetRef="Gateway_ImpactFound" />
+    <sequenceFlow id="Flow_NoImpact_Certificate" sourceRef="Gateway_ImpactFound" targetRef="EndEvent_NoImpact">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">affectedDecisionIds.length == 0</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_ImpactFound_DBOM" sourceRef="Gateway_ImpactFound" targetRef="Task_DBOM">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">affectedDecisionIds.length &gt; 0</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_DBOM_Freeze" sourceRef="Task_DBOM" targetRef="Task_Freeze" />
+    <sequenceFlow id="Flow_Freeze_Replay" sourceRef="Task_Freeze" targetRef="Task_Replay" />
+    <sequenceFlow id="Flow_Replay_ImpactClassification" sourceRef="Task_Replay" targetRef="Task_ImpactClassification" />
+    <sequenceFlow id="Flow_ImpactClassification_RemediationPlan" sourceRef="Task_ImpactClassification" targetRef="Task_RemediationPlan" />
+    <sequenceFlow id="Flow_RemediationPlan_HumanReview" sourceRef="Task_RemediationPlan" targetRef="UserTask_HumanReview" />
+    <sequenceFlow id="Flow_HumanReview_Decision" sourceRef="UserTask_HumanReview" targetRef="Gateway_HumanReviewDecision" />
+    <sequenceFlow id="Flow_ReviewNeedsEvidence_BlastRadius" sourceRef="Gateway_HumanReviewDecision" targetRef="Task_BlastRadius">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">humanReviewOutcome == "needs_more_evidence"</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_ReviewRevise_RemediationPlan" sourceRef="Gateway_HumanReviewDecision" targetRef="Task_RemediationPlan">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">humanReviewOutcome == "revise_plan"</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_ReviewApproved_RemediationExecution" sourceRef="Gateway_HumanReviewDecision" targetRef="Task_RemediationExecution">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">humanReviewOutcome == "approved"</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_RemediationExecution_TestCloud" sourceRef="Task_RemediationExecution" targetRef="Task_TestCloudVerification" />
+    <sequenceFlow id="Flow_TestCloud_VerificationGateway" sourceRef="Task_TestCloudVerification" targetRef="Gateway_VerificationPassed" />
+    <sequenceFlow id="Flow_VerificationFailed_RemediationPlan" sourceRef="Gateway_VerificationPassed" targetRef="Task_RemediationPlan">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">regressionTestStatus == "failed" and reentryCount &lt; MaxReentryCount</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_VerificationFailed_SeniorBoard" sourceRef="Gateway_VerificationPassed" targetRef="UserTask_SeniorRecallBoard">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">regressionTestStatus == "failed" and reentryCount &gt;= MaxReentryCount</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_SeniorBoard_RemediationPlan" sourceRef="UserTask_SeniorRecallBoard" targetRef="Task_RemediationPlan" />
+    <sequenceFlow id="Flow_VerificationPassed_AuditSummary" sourceRef="Gateway_VerificationPassed" targetRef="Task_AuditSummary">
+      <conditionExpression xsi:type="tFormalExpression" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">regressionTestStatus == "passed"</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="Flow_AuditSummary_Certificate" sourceRef="Task_AuditSummary" targetRef="Task_Certificate" />
+    <sequenceFlow id="Flow_Certificate_FinalApproval" sourceRef="Task_Certificate" targetRef="UserTask_FinalApproval" />
+    <sequenceFlow id="Flow_FinalApproval_Closed" sourceRef="UserTask_FinalApproval" targetRef="EndEvent_Closed" />
+  </process>
+</definitions>

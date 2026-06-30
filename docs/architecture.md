@@ -33,6 +33,7 @@ flowchart TD
 | Layer | Implementation |
 | --- | --- |
 | Case orchestration | `maestro/case-schema.json`, `maestro/stage-contracts.md`, `maestro/rules.md` |
+| Full BPMN process | `maestro/recallos-ai-decision-recall.bpmn` |
 | Coded agents | `coded-agents/*/agent.py` plus shared `recallos_core` |
 | API workflows | `api-workflows/*/workflow.py` |
 | Legacy automation | `robots/legacy-loan-portal/robot_update_register.py` |
