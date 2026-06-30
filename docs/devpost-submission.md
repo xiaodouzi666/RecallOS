@@ -7,7 +7,8 @@
 - Hosted Control Tower: <https://xiaodouzi666.github.io/RecallOS/control-tower/>
 - Presentation deck: <https://github.com/xiaodouzi666/RecallOS/raw/main/deck/RecallOS_Submission_Deck.pptx>
 - License: MIT
-- Video: TODO after upload
+- Video: TODO after upload; local rendered file is
+  `/Users/liujunjun/Documents/Codex/2026-06-28/https-uipath-agenthack-devpost-com-ref-2/outputs/RecallOS_Demo_With_Audio.mp4`
 - UiPath evidence: package `Solution 1` version `1.0.0`, deployment
   `Shared / Solution 1`, successful job
   `7f3a8d31-355a-4c61-8eae-766ae7957be7`
@@ -104,3 +105,15 @@ policy replay makes the decision, while agents explain, classify, and draft.
 - Explain which agents are involved and how Maestro orchestrates them.
 - Show where humans fit in: review, approval, rework, and closure.
 - Show or mention Codex / UiPath for Coding Agents usage for bonus points.
+
+Local render target:
+
+- `/Users/liujunjun/Documents/Codex/2026-06-28/https-uipath-agenthack-devpost-com-ref-2/outputs/RecallOS_Demo_With_Audio.mp4`
+- `/Users/liujunjun/Documents/Codex/2026-06-28/https-uipath-agenthack-devpost-com-ref-2/outputs/RecallOS_Demo_Narration.txt`
+
+Local render verification:
+
+- Duration: `00:04:46.28`
+- Video: `1280x720`, H.264, 30 fps
+- Audio: AAC mono narration, present and decoded successfully
+- SHA-256: `6cccc11a20276a3e3335b1e7c4bb0519b0acfa614e3e5fdd9b03b02738ee3b11`

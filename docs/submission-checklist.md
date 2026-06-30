@@ -41,7 +41,8 @@
 - [ ] Public GitHub repository linked on Devpost.
 - [ ] MIT license visible.
 - [ ] README complete.
-- [ ] Demo video is under 5 minutes.
+- [x] Demo video rendered locally, under 5 minutes, with audio.
+- [ ] Demo video uploaded and linked on Devpost.
 - [ ] Presentation deck uploaded or linked.
 - [x] Automation Cloud solution can be demonstrated.
 - [ ] Product feedback form completed if pursuing bonus.
@@ -51,6 +52,6 @@
 - GitHub repository is published at `https://github.com/xiaodouzi666/RecallOS`.
 - GitHub Pages source is prepared as `main` / `/docs`; saving the setting publishes the Control Tower.
 - UiPath Automation Cloud package, deployment, and successful job evidence are captured in `docs/uipath-cloud-evidence.md`.
-- Record and upload the demo video.
+- Demo video is rendered locally at `outputs/RecallOS_Demo_With_Audio.mp4`; upload it to YouTube, Vimeo, or Youku and copy the public link.
 - Fill the Devpost video link after upload and perform the final Devpost submit action.
 - Complete any optional UiPath product feedback form if pursuing the bonus award.
